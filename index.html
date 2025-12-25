@@ -77,21 +77,25 @@ input{padding:10px 14px;border-radius:999px;border:none;margin-top:10px;text-ali
 <span onclick="go('notes')">💌</span>
 <span onclick="go('thoughts')">💖</span>
 <span onclick="go('lock')">🔒</span>
-</div><script>
+</div><!-- Music --><audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><script>
 function wish(){alert('🎄 Merry Christmas, Nancy! May your days be warm and bright ❤️')}
 function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
 
-// Mobile-friendly music
-const music = new Audio('https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3');
-music.loop = true;
+// Mobile-friendly music toggle
+const music = document.getElementById('music');
 let playing = false;
 document.getElementById('musicBtn').addEventListener('click', () => {
   if(!playing){
     music.play().catch(e => alert("Tap the button to start music on mobile 🎵"));
     playing = true;
+    document.getElementById('musicBtn').textContent = "Pause 🔔";
   } else {
     music.pause();
     playing = false;
+    document.getElementById('musicBtn').textContent = "Music 🔔";
   }
 });
 
@@ -110,4 +114,4 @@ function resize(){w=c.width=innerWidth;h=c.height=innerHeight}window.onresize=re
 for(let i=0;i<200;i++)flakes.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()+.5});
 (function snow(){x.clearRect(0,0,w,h);x.fillStyle='white';flakes.forEach(f=>{x.beginPath();x.arc(f.x,f.y,f.r,0,Math.PI*2);x.fill();f.y+=f.s;if(f.y>h){f.y=0;f.x=Math.random()*w}});requestAnimationFrame(snow)})();
 </script></body>
- </html>
+</html>
